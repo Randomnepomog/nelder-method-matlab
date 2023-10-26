@@ -11,7 +11,11 @@ nelder.m file contains an algorithm that will search for that minimum.
 
 # Intro
 Note for the reader: Please, forgive me if you notice any bananas below. That text is a translation of my school work which originally was written in Russian language. And if you notice any bananas do not hesitate and write me an email or message here/LinkedIn/telegram. 
-
+```
+function test() {
+  console.log("notice the blank line before this function?");
+}
+```
 The Nelder-Mead method is an extension of the simplex method by Spendley, Hext, and Himsworth. The convex hull of an (n+1)-equidistant point set in n-dimensional space is called a regular simplex. This configuration is considered in the Spendley, Hext, and Himsworth method. 
 In two-dimensional space, a regular simplex is an equilateral triangle, and in three-dimensional space, it is a regular tetrahedron. The idea of the method is to compare the function values at the vertices of the simplex and move the simplex in the direction of the optimal 
 point using an iterative procedure. In the original simplex method, a regular simplex was used at each stage. Nelder and Mead proposed several modifications of this method, allowing for irregular simplices. As a result, a very reliable direct search method was obtained, 
