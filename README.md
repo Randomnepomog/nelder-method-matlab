@@ -1,20 +1,23 @@
+
 # nelder-method-matlab
 Search for the minimum of an objective function in a multidimensional space using the Nelder–Mead method in MATLAB.
 # Files 
-Shape3d.m file contains a graphic representation of the function we use. That will help to make sure that our decision is indeed correct.
+
+`Shape3d.m` file contains a graphic representation of the function we use. That will help to make sure that our decision is indeed correct.
+
 ![image](https://github.com/Randomnepomog/nelder-method-matlab/assets/92563887/a3c4b004-0d6b-46ed-aaff-ef443da062de)
 
-Function: 
+# Function: 
 ![image](https://github.com/Randomnepomog/nelder-method-matlab/assets/92563887/d9fc462a-93af-4661-a60a-603e845c0512)
 
-nelder.m file contains an algorithm that will search for that minimum.
+`nelder.m` file contains an algorithm that will search for that minimum.
 
 # Intro
-Note for the reader: Please, forgive me if you notice any bananas below. That text is a translation of my school work which originally was written in Russian language. And if you notice any bananas do not hesitate and write me an email or message here/LinkedIn/telegram. 
-```
->Note for the reader:
->Please, forgive me if you notice any bananas below. That text is a translation of my school work which originally was written in Russian language. And if you notice any bananas do not hesitate and write me an email or message here/LinkedIn/telegram. 
-```
+
+
+> Note for the reader:
+> Please, forgive me if you notice any bananas below. That text is a translation of my school work which originally was written in Russian language. And if you notice any bananas do not hesitate and write me an email or message here/LinkedIn/telegram. 
+
 
 
 
@@ -30,4 +33,62 @@ The main features of the algorithm can be summarized as follows:
 * Lack of convergence theory. The algorithm may even diverge on smooth functions.
 
 # Math problem setting
+
+An optimization problem is defined as the task of finding the extremum (maximum or minimum) of a function defined over a certain set or domain. 
+
+$f: \mathbb{X}\ \rightarrow \mathbb{R}\$
+
+$f(x) \rightarrow \min, x \in \mathbb{X} 
+
+Generally, an optimization problem also implies the search for an element x, typically a point or set of values, at which the objective function (often denoted as 
+ $f(x)$ ) reaches an extremum (either a maximum or a minimum).
+ 
+$x_0=\{argmin}_{x \in \mathbb{X}} f(x), \mathbb{X} \subseteq \mathbb{G}$ 
+
+
+
+To properly formulate an optimization problem, you need to specify the following:
+
+* Feasible set. $\mathbb{X}$
+
+* Objective function. $f: \mathbb{X} \rightarrow \mathbb{R}$
+
+* Search criterion (max or min).
+
+To solve problem $f(x) \rightarrow \min_{x \in \mathbb{X}}$ we need to:
+1. Show that $\mathbb{X} = \emptyset$
+2. Show that objective function $f(x)$ is not limited
+3. Find $x_*$
+4. If $x_*$ doesnt exist we need to find $\inf _{x \in \mathbb{X}} f(x)$
+   
+If feasible set is $\mathbb{X} = \mathbb{G}$, then such a problem is called an unconstrained optimization problem; otherwise, it is referred to as a constrained optimization problem.
+
+# Current problem
+
+The Nelder-Mead method, also known as the simplex method, is an unconstrained optimization method for real-valued functions of multiple variables. In other words, the following constraints are imposed on the feasible set:
+
+$\mathbb{X}\=\mathbb{G}\=\mathbb{R}^n$
+
+One of the main advantages of this method is that it does not rely on the gradient of the objective function, making it applicable to non-smooth functions. The Nelder-Mead method utilizes the concept of a simplex in $n$-dimensional space.
+
+A set $\mathnormal{C}$ is called convex if $\forall\ a,b\in\mathnormal{C}\ [a,b] \subseteq \mathnormal{C}$ .
+
+The convex hull of a set $\mathbb{X}$ is defined as the smallest convex set $\mathnormal{C}$ where $\mathnormal{C}\subseteq \mathnormal{C}$
+A simplex, or an $n$-simplex, is a convex hull of $(n+1)$ points.
+For example:
+
+* A 1-simplex is a line segment.
+* A 2-simplex is a triangle.
+* A 3-simplex is a tetrahedron.
+
+### Description of the Method
+The parameters of the method include:
+* Reflection coefficient $\alpha > 0$ , usually chosen as 1.
+* Compression coefficient $\beta >0$ , typically set to 0.5.
+* Expansion coefficient &\gamma >0&, usually chosen as 2.
+### Initialization: 
+Randomly selected $n+1$ point $$ to form an n-dimensional simplex. Evaluate the function values at these points: .
+Sorting: Select three points from the simplex: with the highest (among the selected) function value , with the next highest value , and with the lowest function value . The goal of further manipulations is to reduce at least .
+
+
 
