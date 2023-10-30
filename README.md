@@ -81,12 +81,12 @@ For example:
 * A 2-simplex is a triangle.
 * A 3-simplex is a tetrahedron.
 
-### Description of the Method
+# Description of the Method
 The parameters of the method include:
 * Reflection coefficient $\alpha > 0$ , usually chosen as 1.
 * Compression coefficient $\beta >0$ , typically set to 0.5.
 * Expansion coefficient $\gamma >0$, usually chosen as 2.
-### Initialization: 
+# Initialization: 
 Randomly selected $n+1$ point $x_i = (x_i^1 , x_i^2 , ... , x_i^n )$ to form an n-dimensional simplex. At those points, we need to apply this function: 
 $f_1 = f(x_i^1) , f_2 = f(x_i^2),..,f_n+1 = f(x_i^n+1)$
 ### 1. Sorting: 
@@ -94,6 +94,29 @@ Select three points from the simplex: $x_h$ with the highest (from selected) fun
 ### 2. Center of gravity:
 Finding the center of gravity of all the points, except $x_h:x_c = \frac{1}{n} \sum_{i\neq 1} x_i  $. Calculation of $f_c = f(x_c)$ is not necessary.
 ### 3. Reflection:
-We need to reflect point $x_h$ with respect to $x_c$ with coefficient $\alpha$(if $\alpha = 1$, this is central symmetry; otherwise, homothety), and we get a new point $x_r$ which we use to get a new function value $f_r = f(x_r)$. Coordinates of the new point should be calculated by using the formula $$
+We need to reflect point $x_h$ with respect to $x_c$ with coefficient $\alpha$(if $\alpha = 1$, this is central symmetry; otherwise, homothety), and we get a new point $x_r$ which we use to get a new function value $f_r = f(x_r)$. Coordinates of the new point should be calculated by using the formula $x_r = (2+\alpha)x_c - \alpha x_h$
+### 4. Comparing.
+Comparing function value $f_c$ with $f_h, f_g, f_l$:
+#### 4a.
+If $f_r < f_l$, we need to make a stretch. The new point will be $x_e = (1-\gamma)x_c + \gamma x_r$, which means that the new function value is $f_e = f(x_e)$.
+Then, if $f_e < f_l$, we need to replace $x_h$ with $x_e$ and continue with step 8.
+If $f_e > f_l$, we need to replace $x_h$ with $x_r$ and continue with step 8.
+#### 4b.
+If $f_l < f_r < f_g$, we need to replace $x_h$ with $x_r$ and continue with step 8.
+#### 4c.
+If $f_h > f_r > f_g$, we need to switch $x_r$ and $x_h$ and continue with step 5.
+#### 4d.
+If $f_r > f_h$, we  continue with step 5.
+#### 5. Compression:
+Building the point $x_s = \beta x_h + (1 - \beta)x_c$ and calculating $f_s$.
+#### 6. 
+If $f_s < f_h$, we need to replace $x_h$ with $x_s$ and continue with step 8. 
+#### 7. 
+If $f_s > f_h$, we need to compress the simplex - homothety to the point with the smallest value $x_0 : x_i \to x_0 + (x_i - x_0)/2$ 
+### 8. Checking convergence.
+It can be done in various ways, for example, by estimating the variance of the set of points. The essence of the check is to verify the mutual proximity of the obtained simplex vertices, which implies their proximity to the desired minimum. If the required accuracy has not been achieved, you can continue with iterations from step 1.
+# Method analysis
+
+
 to be continued...
 
