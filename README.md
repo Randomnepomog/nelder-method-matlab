@@ -113,7 +113,7 @@ Building the point $x_s = \beta x_h + (1 - \beta)x_c$ and calculating $f_s$.
 If $f_s < f_h$, we need to replace $x_h$ with $x_s$ and continue with step 8. 
 #### 7. 
 If $f_s > f_h$, we need to compress the simplex - homothety to the point with the smallest value $x_0 : x_i \to x_0 + (x_i - x_0)/2$ 
-### 8. Checking convergence.
+#### 8. Checking convergence.
 It can be done in various ways, for example, by estimating the variance of the set of points. The essence of the check is to verify the mutual proximity of the obtained simplex vertices, which implies their proximity to the desired minimum. If the required accuracy has not been achieved, you can continue with iterations from step 1.
 # Method analysis
 
