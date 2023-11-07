@@ -114,9 +114,18 @@ If $f_s < f_h$, we need to replace $x_h$ with $x_s$ and continue with step 8.
 #### 7. 
 If $f_s > f_h$, we need to compress the simplex - homothety to the point with the smallest value $x_0 : x_i \to x_0 + (x_i - x_0)/2$ 
 #### 8. Checking convergence.
-It can be done in various ways, for example, by estimating the variance of the set of points. The essence of the check is to verify the mutual proximity of the obtained simplex vertices, which implies their proximity to the desired minimum. If the required accuracy has not been achieved, you can continue with iterations from step 1.
+It can be done in various ways, for example, by estimating the variance of the set of points. The essence of the check is to verify the mutual proximity of the obtained simplex vertices, which implies their proximity to the desired minimum. If the required accuracy is not achieved, you can continue with iterations from step 1.
 # Method analysis
 
+Studying the convergence of the Nelder-Mead algorithm is a challenging mathematical task. Known results regarding the convergence of simplex methods are based on the following assumptions:
+▪ The simplex should not degenerate during the algorithm's iterations.
+▪ Some conditions are imposed on the smoothness of the function.
 
-to be continued...
+In the general case, both of these assumptions are not immediately satisfied for the Nelder-Mead method, and therefore, more needs to be known about the convergence conditions. In 1998, MacKinnon described a family of strictly convex functions and a class of initial simplices in two-dimensional space, for which all the vertices of the working simplex do not converge to the optimal point. In 1998, Lagarias published a paper in which he investigated the convergence of the method in one- and two-dimensional spaces for some strictly convex functions with bounded level surfaces.
+
+The Nelder-Mead algorithm significantly reduces the function value in the first few iterations and quickly reaches the required accuracy. Typically, the algorithm performs one or two function evaluations per iteration, excluding compression, which is rarely used in practice. This is crucial when evaluating function values is very costly or time-consuming. For such tasks, the Nelder-Mead algorithm is much more efficient than many other methods that require evaluating no fewer than function values at each iteration.
+
+The main advantages of the algorithm are its simplicity and efficiency.
+
+On the other hand, due to the lack of convergence theory, the method can lead to incorrect answers even for smooth functions in practice. It is also possible that the working simplex is far from the optimal point, and the algorithm performs many iterations with little change in the function value. Heuristically solving this problem involves running the algorithm several times and limiting the number of iterations.
 
